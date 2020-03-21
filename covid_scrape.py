@@ -16,12 +16,13 @@ i=0
 table = []
 
 #Create a Request object of the website
-URL = 'https://www.quebec.ca/en/health/health-issues/a-z/2019-coronavirus/'
+#URL = 'https://www.quebec.ca/en/health/health-issues/a-z/2019-coronavirus/'
+URL = 'https://www.quebec.ca/en/health/health-issues/a-z/2019-coronavirus/situation-coronavirus-in-quebec/'
 page = requests.get(URL)
 
 #Get current date, and create text file with date appended
 today = datetime.datetime.now()
-filename = "Covid_data_QC_" + today.strftime("%Y") + "_" + today.strftime("%m") + "_" + today.strftime("%d")
+filename = "data/Covid_data_QC_" + today.strftime("%Y") + "_" + today.strftime("%m") + "_" + today.strftime("%d")
 file = open(filename, "w+")
 
 #Create beautiful soup object from the page request for easy filtering of HTML
@@ -36,7 +37,8 @@ table_len = len(table)
 
 #Filter trough elements of table and output everything after Mauricie, formated to text file
 while i < table_len - 1:
-	if "Mauricie" in table[i]:
+#	if "Mauricie" in table[i]:
+	if "01 - " in table[i]:
 		first_table_elem = 1
 	if first_table_elem == 1:
 		print("[",table[i],"] ","[", table[i+1],"] ")
